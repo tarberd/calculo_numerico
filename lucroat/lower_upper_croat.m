@@ -1,4 +1,4 @@
-function [L U B] = lucroat (n, A, B)
+function [L U B] = lower_upper_croat (n, A, B)
 % k = 1
     for i=1:n
         L(i,1) = A(i,1);
@@ -27,7 +27,7 @@ function [L U B] = lucroat (n, A, B)
     endfor
 % k = n i = n
     soma = 0;
-    for r = 1 : k-1
+    for r = 1 : n-1
         soma += L(n,r)*U(r,n);
     endfor
     L(n,n) = A(n,n) - soma;

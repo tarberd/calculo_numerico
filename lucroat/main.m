@@ -1,7 +1,14 @@
-A = [1 2 3; 4 5 6; 7 8 9;]
+A = [1 1 3;
+     1 -1 3;
+     2 2 2;]
 
-B = [1; 2; 3;]
+B = [4; 1; 2;]
 
-[L, U, C] = lucroat(length(A), A,B)
+n = length(A);
+
+[L, U, B] = lower_upper_croat(n, A,B);
+
+C = solve_lower(n, L, B)
+X = solve_upper(n, U, C)
 
 %residuo_max = max(abs(A*x-B))
