@@ -46,17 +46,17 @@ end
 image_by_lu_croat = lu_croat_solve * A;
 
 % a2). Imprima somente a 1º e última incógnitas e o resíduo máximo;
-printf("X(1) solved by lu_croat");
+printf("X(1) solved by lu_croat:\n\t");
 lu_croat_solve(1)
 
-printf("X(40) solved by lu_croat");
+printf("X(40) solved by lu_croat:\n\t");
 lu_croat_solve(n)
 
-printf("Residuo maximo by lu_croat");
+printf("Residuo maximo by lu_croat:\n\t");
 residuo_max = max(abs(lu_croat_solve * A - B))
 
 % a3). Calcule o número total de operações em PONTO FLUTUANTE utilizadas e calcule o número de operações teórico;
-printf("lu_croat float operations count");
+printf("lu_croat float operations count:\n\t");
 float_ops
 
 
