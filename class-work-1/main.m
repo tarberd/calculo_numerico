@@ -59,4 +59,42 @@ residuo_max = max(abs(lu_croat_solve * A - B))
 printf("lu_croat float operations count:\n\t");
 float_ops
 
+% b). Armazene o sistema acima na forma otimizada de 4 vetores;
+
+for i = 1
+    r(i) = 1;
+    d(i) = 1;
+end
+
+for i = 2 : n/2
+    t(i) = 1;
+    r(i) = 4;
+    d(i) = 1;
+end
+
+for i = n/2 + 1 : n - 1
+    t(i) = 1;
+    r(i) = 5;
+    d(i) = 1;
+end
+
+for i = n
+    t(i) = 1;
+    r(i) = 1;
+end
+
+% b1). Resolva o sistema acima por um método direto otimizado (Gauss-Otimizado para matriz tridiagonal);
+[gauss_solve float_ops] = gauss_solve(t, r, d, B);
+
+% b2). Imprima somente a 1º e última incógnitas e o resíduo máximo;
+printf("X(1) solved by gauss tridiagonal:\n\t");
+gauss_solve(1)
+
+printf("X(40) solved by gauss tridiagonal:\n\t");
+gauss_solve(n)
+
+% b3). Calcule o número total de operações em PONTO FLUTUANTE utilizadas e calcule o número de operações teórico;
+printf("gauss tridiagonal float operations count:\n\t");
+float_ops
+
 
