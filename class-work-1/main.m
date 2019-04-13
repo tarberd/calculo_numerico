@@ -45,3 +45,14 @@ lu_croat_solve = lu_croat_solve(A, B);
 
 image_by_lu_croat = lu_croat_solve * A;
 
+% a2). Imprima somente a 1º e última incógnitas e o resíduo máximo;
+printf("X(1) solved by lu_croat");
+lu_croat_solve(1)
+
+printf("X(40) solved by lu_croat");
+lu_croat_solve(n)
+
+printf("Residuo maximo by lu_croat");
+residuo_max = max(abs(lu_croat_solve * A - B))
+
+
