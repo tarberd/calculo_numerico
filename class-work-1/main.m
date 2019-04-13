@@ -39,11 +39,9 @@ for i = 1 : n
     end
 end
 
-T = [1 0 0;
-     0 1 2;
-     1 1 1;]
+% a1). Resolva o sistema acima por um método direto completo (Eliminação Gaussiana (ECV) ou LU-Crout (CCO));
 
-B = [1; 2; 3]
+lu_croat_solve = lu_croat_solve(A, B);
 
-[L U B2] = lu_croat(T, B)
+image_by_lu_croat = lu_croat_solve * A;
 
