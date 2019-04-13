@@ -6,9 +6,9 @@ function [domain float_operations] = gauss_solve(t, r, d, image)
         aux = t(i) / r(i - 1);
         float_operations += 1;
         r(i) -= aux * d(i - 1);
-        float_operations += 1;
+        float_operations += 2;
         image(i) -= aux * image(i - 1);
-        float_operations += 1;
+        float_operations += 2;
     end
 
     for i = dim
