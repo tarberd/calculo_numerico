@@ -41,7 +41,7 @@ end
 
 % a1). Resolva o sistema acima por um método direto completo (Eliminação Gaussiana (ECV) ou LU-Crout (CCO));
 
-lu_croat_solve = lu_croat_solve(A, B);
+[lu_croat_solve float_ops] = lu_croat_solve(A, B);
 
 image_by_lu_croat = lu_croat_solve * A;
 
@@ -54,5 +54,9 @@ lu_croat_solve(n)
 
 printf("Residuo maximo by lu_croat");
 residuo_max = max(abs(lu_croat_solve * A - B))
+
+% a3). Calcule o número total de operações em PONTO FLUTUANTE utilizadas e calcule o número de operações teórico;
+printf("lu_croat float operations count");
+float_ops
 
 
