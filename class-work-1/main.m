@@ -85,46 +85,79 @@ for i = n
 end
 
 % b1). Resolva o sistema acima por um método direto otimizado (Gauss-Otimizado para matriz tridiagonal);
-[gauss_solve float_ops] = gauss_solve(t, r, d, B);
+[gauss_x float_ops] = gauss_solve(t, r, d, B);
 
 % b2). Imprima somente a 1º e última incógnitas e o resíduo máximo;
 printf("X(1) solved by gauss tridiagonal:\n\t");
-gauss_solve(1)
+gauss_x(1)
 
 printf("X(40) solved by gauss tridiagonal:\n\t");
-gauss_solve(n)
+gauss_x(n)
 
 printf("Residuo maximo by gauss tridiagonal:\n\t");
-residuo_max = max(abs(gauss_solve * A - B))
+residuo_max = max(abs(gauss_x * A - B))
 
 % b3). Calcule o número total de operações em PONTO FLUTUANTE utilizadas e calcule o número de operações teórico;
 printf("gauss tridiagonal float operations count:\n\t");
 float_ops
 
 % c). Resolva o sistema acima por um método iterativo (Gauss-Seidel), utilizando o armazenamento otimizado em 4 vetores item b):
-for i = 1 : n
-    seed(i) = 1;
-end
-[gauss_seidel_solve iter_count] = gauss_seidel_solve(t, r, d, B, seed, 1e-20, 1);
-
-printf("X(1) solved by gauss seidel:\n\t");
-gauss_seidel_solve(1)
-
-printf("X(40) solved by gauss seidel:\n\t");
-gauss_seidel_solve(n)
-
-printf("Residuo maximo by gauss tridiagonal:\n\t");
-residuo_max = max(abs(gauss_seidel_solve * A - B))
 
 % c1). Teste fatores de relaxação f (sub ou sobre, entre 0<f<2) e determine previamente
 % (com critério de parada grosseiro, 1e-2) o seu valor otimizado, que permita a convergência
 % com o menor número de iterações. Imprima o numero de iterações de cada teste
 % (pode-se usar critério de parada maior, 1e-2, para  efetuar menos iterações nesta fase de testes);
 
-for i : 0.1 : 0.1 : 1.9
-    % [_ iter_count] = gauss_seidel_solve(t, r, d, B, seed, 1e-2, 1);
+for i = 1 : n
+    seed(i) = 1;
 end
 
-% c2). Determine a solução S={xi} do sistema acima, pelo método iterativo de Gauss-Seidel, com critério de parada Max|Dxi|<=1.10-4 (Dx = diferenças entre variáveis novas e antigas), e uso o valor otimizado do fator de relaxação obtido acima. Imprima somente a 1º e última incógnitas e o resíduo máximo. Use um algoritmo otimizado, que não realize cálculos com lugares vazios na matriz, senão o método de Gauss-Seidel não vale a pena;
+current_max_it = 1000000000;
+relaxation_factor = 1;
+for i = 1 : 19
+    relaxation_factor_test = i / 10;
+    [gauss_seidel_x iter_count] = gauss_seidel_solve(t, r, d, B, seed, 1e-2, relaxation_factor_test);
+    iter_count_vector(i, 1) = relaxation_factor_test;
+    iter_count_vector(i, 2) = iter_count;
+
+    if(current_max_it > iter_count)
+        current_max_it = iter_count;
+        relaxation_factor = relaxation_factor_test;
+    end
+end
+
+format short
+printf("relaxation factors | iteration count for 1e-2:\n");
+iter_count_vector
+
+printf("chose relaxation factor:\n\t");
+relaxation_factor
+format long
+
+% c2). Determine a solução S={xi} do sistema acima, pelo método iterativo de Gauss-Seidel, com critério de parada Max|Dxi|<=1.10-4
+% (Dx = diferenças entre variáveis novas e antigas), e uso o valor otimizado do fator de relaxação obtido acima.
+% Imprima somente a 1º e última incógnitas e o resíduo máximo. Use um algoritmo otimizado, que não realize cálculos com lugares vazios na matriz,
+% senão o método de Gauss-Seidel não vale a pena;
+
+[gauss_seidel_x iter_count float_ops] = gauss_seidel_solve(t, r, d, B, seed, 1e-4, relaxation_factor);
+
+printf("X(1) solved by gauss seidel:\n\t");
+gauss_seidel_x(1)
+
+printf("X(40) solved by gauss seidel:\n\t");
+gauss_seidel_x(n)
+
+printf("Residuo maximo by gauss seidel:\n\t");
+residuo_max = max(abs(gauss_seidel_x * A - B))
+
 % c3). Imprima o número de iterações e o número total de operações em PONTO FLUTUANTE utilizadas;
-% c4). Imprima o erro de Truncamento máximo na solução S obtida acima, em variavel ‘double’ para isolar o efeitos dos arredondamentos. Lembre-se que o erro de Truncamento máximo pode ser obtido com  Max|xi(aproximado,double,criterio)-xi(aproximado,double,criterio2)|.
+
+printf("Solved gauss seidel in steps:\n\t");
+iter_count
+
+printf("Float operations gauss seidel:\n\t");
+float_ops
+
+% c4). Imprima o erro de Truncamento máximo na solução S obtida acima, em variavel ‘double’ para isolar o efeitos dos arredondamentos.
+% Lembre-se que o erro de Truncamento máximo pode ser obtido com  Max|xi(aproximado,double,criterio)-xi(aproximado,double,criterio2)|.
+
