@@ -58,7 +58,7 @@ residuo_max = max(abs(lu_croat_solve * A - B))
 
 % a3). Calcule o número total de operações em PONTO FLUTUANTE utilizadas e calcule o número de operações teórico;
 printf("lu_croat float operations count:\n\t");
-float_ops
+float_ops_lu_croat = float_ops
 
 % b). Armazene o sistema acima na forma otimizada de 4 vetores;
 
@@ -99,7 +99,7 @@ residuo_max = max(abs(gauss_x * A - B))
 
 % b3). Calcule o número total de operações em PONTO FLUTUANTE utilizadas e calcule o número de operações teórico;
 printf("gauss tridiagonal float operations count:\n\t");
-float_ops
+float_ops_gauss_tridiagonal = float_ops
 
 % c). Resolva o sistema acima por um método iterativo (Gauss-Seidel), utilizando o armazenamento otimizado em 4 vetores item b):
 
@@ -127,7 +127,7 @@ for i = 1 : 19
 end
 
 format short
-printf("relaxation factors | iteration count for 1e-2:\n");
+printf("relaxation factors | iteration count for 1e-2:\n\t");
 iter_count_vector
 
 printf("chose relaxation factor:\n\t");
@@ -156,8 +156,21 @@ printf("Solved gauss seidel in steps:\n\t");
 iter_count
 
 printf("Float operations gauss seidel:\n\t");
-float_ops
+float_ops_gauss_seidel = float_ops
 
 % c4). Imprima o erro de Truncamento máximo na solução S obtida acima, em variavel ‘double’ para isolar o efeitos dos arredondamentos.
 % Lembre-se que o erro de Truncamento máximo pode ser obtido com  Max|xi(aproximado,double,criterio)-xi(aproximado,double,criterio2)|.
 
+gauss_seidel_x_double = gauss_seidel_solve(t, r, d, B, seed, 1e-8, relaxation_factor);
+
+printf("Truncamento entre criterio de parada 1e-4 e 1e-8 :\n\t");
+erro_de_truncamento = max(abs(gauss_seidel_x - gauss_seidel_x_double))
+
+% d). Imprima, no final, o número de operações em PONTO FLUTUANTE utilizadas em cada um dos 3 métodos e indique o melhor método utilizado.
+printf("Float operations:\n\t");
+float_ops_lu_croat
+printf("\t");
+float_ops_gauss_tridiagonal
+printf("\t");
+float_ops_gauss_seidel
+printf("O melhor metodo para resolver o problema é o Gauss optimizado para matrix tridiagonal!\n");
