@@ -105,7 +105,7 @@ float_ops
 for i = 1 : n
     seed(i) = 1;
 end
-[gauss_seidel_solve iter_count] = gauss_seidel_solve(t, r, d, B, seed, 1e-10);
+[gauss_seidel_solve iter_count] = gauss_seidel_solve(t, r, d, B, seed, 1e-20, 1);
 
 printf("X(1) solved by gauss seidel:\n\t");
 gauss_seidel_solve(1)
@@ -113,10 +113,17 @@ gauss_seidel_solve(1)
 printf("X(40) solved by gauss seidel:\n\t");
 gauss_seidel_solve(n)
 
+printf("Residuo maximo by gauss tridiagonal:\n\t");
+residuo_max = max(abs(gauss_seidel_solve * A - B))
+
 % c1). Teste fatores de relaxação f (sub ou sobre, entre 0<f<2) e determine previamente
 % (com critério de parada grosseiro, 1e-2) o seu valor otimizado, que permita a convergência
 % com o menor número de iterações. Imprima o numero de iterações de cada teste
 % (pode-se usar critério de parada maior, 1e-2, para  efetuar menos iterações nesta fase de testes);
+
+for i : 0.1 : 0.1 : 1.9
+    % [_ iter_count] = gauss_seidel_solve(t, r, d, B, seed, 1e-2, 1);
+end
 
 % c2). Determine a solução S={xi} do sistema acima, pelo método iterativo de Gauss-Seidel, com critério de parada Max|Dxi|<=1.10-4 (Dx = diferenças entre variáveis novas e antigas), e uso o valor otimizado do fator de relaxação obtido acima. Imprima somente a 1º e última incógnitas e o resíduo máximo. Use um algoritmo otimizado, que não realize cálculos com lugares vazios na matriz, senão o método de Gauss-Seidel não vale a pena;
 % c3). Imprima o número de iterações e o número total de operações em PONTO FLUTUANTE utilizadas;
