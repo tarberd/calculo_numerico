@@ -1,6 +1,6 @@
 function roots = locate_polynomial_roots(polynome_coefficients, real_domain_step)
 
-  max_domain_radius = 1 + max(abs(polynome_coefficients(2 : end)))/polynome_coefficients(1);
+  max_domain_radius = 1 + max(abs(polynome_coefficients(2 : end)))/abs(polynome_coefficients(1));
 
   real_domain = [-max_domain_radius max_domain_radius];
 
