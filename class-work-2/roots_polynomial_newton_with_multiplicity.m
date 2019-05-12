@@ -12,7 +12,7 @@ function roots = roots_polynomial_newton_with_multiplicity(polynome_coefficients
     while abs(dx) >= tolerance && iter_count < 1000
       [quotient remainder_1] = briot_ruffini(polynome_coefficients, initial_solution);
 
-      [_ remainder_2] = briot_ruffini(quotient, roots_seeds(1));
+      [_ remainder_2] = briot_ruffini(quotient, initial_solution);
 
       dx = -remainder_1/remainder_2;
 

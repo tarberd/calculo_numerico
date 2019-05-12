@@ -19,6 +19,7 @@ function roots = roots_newton(f, domain, domain_step, image_step_factor, toleran
 
       iter_count += 1;
     end
+
     roots = [roots initial_solution];
   end
 end

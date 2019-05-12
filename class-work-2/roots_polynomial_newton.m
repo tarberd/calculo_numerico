@@ -9,10 +9,10 @@ function roots = roots_polynomial_newton(polynome_coefficients, real_domain_step
     dx = tolerance;
 
     iter_count = 0;
-    while abs(dx) >= tolerance && iter_count < 1000
+    while abs(dx) >= tolerance && iter_count < 100
       [quotient remainder_1] = briot_ruffini(polynome_coefficients, initial_solution);
 
-      [_ remainder_2] = briot_ruffini(quotient, roots_seeds(1));
+      [_ remainder_2] = briot_ruffini(quotient, initial_solution);
 
       dx = -remainder_1/remainder_2;
 
