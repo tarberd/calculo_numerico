@@ -24,7 +24,7 @@ function roots = locate_polynomial_roots(polynome_coefficients, real_domain_step
 
   % use dummy complex root to fill the rest
   for i = length(roots) + 1 : length(polynome_coefficients) - 1
-    new_complex_root = complex(0, max_domain_radius/2);
+    new_complex_root = complex(max_domain_radius/2, max_domain_radius/2);
     roots = [roots new_complex_root];
   end
 

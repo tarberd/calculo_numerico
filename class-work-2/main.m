@@ -17,12 +17,15 @@ residuo = f(roots)
 
 polynome_coefficients = [+1 -7 +20.95 -34.75 +34.5004 -20.5012 +6.7512 -0.9504]
 
-format long;
 roots = roots_polynomial_newton(polynome_coefficients, 0.001, 1e-14)
-% roots = roots_polynomial_newton([2 0 -1 -2], 0.01, 1e-14)
+
+residuo = abs(horner(polynome_coefficients, roots))
 
 % 2b). Use o método de Newton, usando a estimativa da multiplicidade M de cada raiz (teste diferentes valores de raízes iniciais e diferentes limites (1e-2, 1e-3,...) para a soma dos restos na estimativa da multiplicidade).
-%
+
+roots = roots_polynomial_newton_with_multiplicity(polynome_coefficients, 0.001, 1e-14)
+
+
 % 2c). Monte o polinômio fatorado em binômios (x-raiz(1))^M(1) * (x-raiz(2))^M(2) * ....., com as raizes arredondadas paar o seu valor exato.
 %
 % RESPOSTAS:
