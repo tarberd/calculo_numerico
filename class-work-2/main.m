@@ -89,9 +89,12 @@ f = @(x) x(1)^3 + x(2)^3 - 2
 
 g = @(x) sin(x(1)) * cos(x(2)) - 0.45
 
-initial_value = [1 1]
+initial_value = [-0.5; 0.5;]
 
 solution = non_linear_system_newton(f, g, initial_value, 1e-14)
+
+f_residuo = abs(f(solution))
+g_residuo = abs(g(solution))
 
 % Obs.:
 %
