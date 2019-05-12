@@ -4,11 +4,11 @@ function roots = locate_real_roots(f, domain, domain_step, image_step_factor)
 
   image = f(domain_partitions);
 
+  max_image_range = image_step_factor * domain_step;
+
   roots = [];
 
   for i = 1 : (length(domain_partitions) - 1)
-    max_image_range = image_step_factor * domain_step;
-
     is_continuous = abs(image(i + 1) - image(i)) < max_image_range ;
 
     satisfies_bolzano_theorem = image(i)*image(i + 1) <= 0;

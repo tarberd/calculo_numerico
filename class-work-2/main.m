@@ -6,13 +6,19 @@ f = @(x) x .* tan(x) .- 1
 
 roots = roots_newton(f, domain, 0.05, 10, 1e-14)
 
+residuo = f(roots)
+
 %
 % 2). Determine todas as raízes, respectivas multiplicidades e resíduos do polinômio de grau 7 com os seguintes coeficientes em ordem decrescente de grau:
 %
 %        a=[+1 -7  +20.95 -34.75 +34.5004 -20.5012 +6.7512 -0.9504 ]
 %
 % 2a). Use o método de Newton tradicional (com multiplicidade M=1);
-%
+
+polynome_coefficients = [+1 -7 +20.95 -34.75 +34.5004 -20.5012 +6.7512 -0.9504]
+
+roots = locate_polynomial_roots(polynome_coefficients, 0.001)
+
 % 2b). Use o método de Newton, usando a estimativa da multiplicidade M de cada raiz (teste diferentes valores de raízes iniciais e diferentes limites (1e-2, 1e-3,...) para a soma dos restos na estimativa da multiplicidade).
 %
 % 2c). Monte o polinômio fatorado em binômios (x-raiz(1))^M(1) * (x-raiz(2))^M(2) * ....., com as raizes arredondadas paar o seu valor exato.
