@@ -4,7 +4,7 @@ domain = [-2*pi 2*pi]
 
 f = @(x) x .* tan(x) .- 1
 
-roots = locate_real_roots(f, domain, 0.05, 10)
+roots = roots_newton(f, domain, 0.05, 10, 1e-14)
 
 %
 % 2). Determine todas as raízes, respectivas multiplicidades e resíduos do polinômio de grau 7 com os seguintes coeficientes em ordem decrescente de grau:
