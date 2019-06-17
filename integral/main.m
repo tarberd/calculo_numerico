@@ -22,3 +22,12 @@ Sn = fSm(n, a, b, f)
 erroSn = abs(Sn - I)
 
 erroSnEstimado = abs(Sn - fSm(2*n, a, b, f))
+
+%metodo de gauss-legendre
+m = 2
+
+Gm = gauss(m, a, b, f)
+
+erro_gauss = abs(Gm - I)
+
+% erro_gaus_estimado = abs(Gm - gauss(m, a, b, f))
