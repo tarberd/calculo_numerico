@@ -1,4 +1,4 @@
-function Gm = fGm(m, a, b, f)
+function [Gm x y] = fGm(m, a, b, f)
   t = [
         [0 0 0 0 0 0 0 0 0 0];
         [-1/sqrt(3) 1/sqrt(3) 0 0 0 0 0 0 0 0];

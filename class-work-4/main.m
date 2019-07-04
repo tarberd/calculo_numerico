@@ -74,8 +74,30 @@ my_erf_result = my_erf(0.5)
 
 erf_result = erf(0.5)
 
+erro_erf = my_erf_result - erf_result
+
 %
 % b). Crie um polinômio de 1º grau (reta) que passe sobre os m=2 pontos gerados na Integração de Gauss-Legendre com m=2 pontos.
 %     Integre-o analiticamente e compare com o resultado da formula de integração de Gauss-Legendre com m=2 pontos
 %     (esses resultados devem ser exatamente os mesmos);
+
+f = @(t) (2 ./ sqrt(pi)) .* exp(-1 .* t .^ 2)
+
+[integral x y] = fGm(2, 0, 1, f)
+
+integral_gm_2 = integral;
+
+y =  y
+
+line_tangent = ((y(2) - y(1)) / (x(2) - x(1)))
+
+line_linear = y(1)
+
+% line_function = @(t) line_tangent .* t .+ line_linear
+
+integral_line_function = @(t) line_tangent .* ((t .^ 2) / 2 .- x(1) .* t) .+ line_linear .* t
+
+integral_by_line = integral_line_function(1) - integral_line_function(0)
+
+erro = integral_by_line - integral_gm_2
 
