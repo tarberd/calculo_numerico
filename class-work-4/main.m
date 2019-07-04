@@ -24,13 +24,13 @@ sin_cos_a = sin_cos_coeffitients(x, y)
 
 sin_cos_y = aproximation_function_sin_cos(sin_cos_a, x)
 
-sin_cos_squered_sum = sum(abs(sin_cos_y .- y))
+sin_cos_squared_sum = sum(abs(sin_cos_y .- y))
 
 sin_cos_inside_a = sin_cos_inside_coeffitients(x, y)
 
 sin_cos_inside_y = aproximation_function_sin_cos_inside(sin_cos_inside_a, x)
 
-sin_cos_inside_squered_sum = sum(abs(sin_cos_inside_y .- y))
+sin_cos_inside_squared_sum = sum(abs(sin_cos_inside_y .- y))
 
 polynomial_a = polynomial_coeffitients(x, y)
 
@@ -38,9 +38,44 @@ polynomial_y = aproximation_function_polynomial(polynomial_a, x)
 
 polynomial_squared_sum = sum(abs(polynomial_y .- y))
 
+result = [
+            sin_cos_squared_sum;
+            sin_cos_inside_squared_sum;
+            polynomial_squared_sum;
+         ];
+
+[min_square_sum min_square_sum_index] = min(result);
+
+if min_square_sum_index == 1
+  disp("The bether aproximation was from:");
+  aproximation_function_sin_cos
+  disp("With squared difference of:");
+  min_square_sum
+elseif min_square_sum_index == 2
+  disp("The bether aproximation was from:");
+  aproximation_function_sin_cos_inside
+  disp("With squared difference of:");
+  min_square_sum
+elseif min_square_sum_index == 3
+  disp("The bether aproximation was from:");
+  aproximation_function_polynomial
+  disp("With squared difference of:");
+  min_square_sum
+end
+
 %
 % 2.
 %
-% a). Crie uma função erf2(x), com precisão double (erro na O(1e-15), que calcule erf(x), na sua forma integral usando o Método de Gauss-Legendre: http://www.wolframalpha.com/input/?i=erf(x). Calcule o erro exato para qualquer x entre [0;1];
+% a). Crie uma função erf2(x), com precisão double (erro na O(1e-15), que calcule erf(x),
+%     na sua forma integral usando o Método de Gauss-Legendre: http://www.wolframalpha.com/input/?i=erf(x).
+%     Calcule o erro exato para qualquer x entre [0;1];
+
+my_erf_result = my_erf(0.5)
+
+erf_result = erf(0.5)
+
 %
-% b). Crie um polinômio de 1º grau (reta) que passe sobre os m=2 pontos gerados na Integração de Gauss-Legendre com m=2 pontos. Integre-o analiticamente e compare com o resultado da formula de integração de Gauss-Legendre com m=2 pontos (esses resultados devem ser exatamente os mesmos);
+% b). Crie um polinômio de 1º grau (reta) que passe sobre os m=2 pontos gerados na Integração de Gauss-Legendre com m=2 pontos.
+%     Integre-o analiticamente e compare com o resultado da formula de integração de Gauss-Legendre com m=2 pontos
+%     (esses resultados devem ser exatamente os mesmos);
+
