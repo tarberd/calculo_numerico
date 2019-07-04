@@ -1,4 +1,4 @@
-function a = sin_cos_coeffitients(x, y)
+function a = sin_cos_coefficients(x, y)
     % solve coefitient derivate system
 
     A(1, 1) = sum(sin(x) .* sin(x));

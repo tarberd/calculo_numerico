@@ -20,19 +20,19 @@ aproximation_function_polynomial = @(a, x) a(1) .+ a(2) .* x .+ a(3) .* x .^ 2 .
 %
 % Analise os resultados e justifique qual seria melhor aproximação que você obteve;
 
-sin_cos_a = sin_cos_coeffitients(x, y)
+sin_cos_a = sin_cos_coefficients(x, y)
 
 sin_cos_y = aproximation_function_sin_cos(sin_cos_a, x)
 
 sin_cos_squared_sum = sum(abs(sin_cos_y .- y))
 
-sin_cos_inside_a = sin_cos_inside_coeffitients(x, y)
+sin_cos_inside_a = sin_cos_inside_coefficients(x, y)
 
 sin_cos_inside_y = aproximation_function_sin_cos_inside(sin_cos_inside_a, x)
 
 sin_cos_inside_squared_sum = sum(abs(sin_cos_inside_y .- y))
 
-polynomial_a = polynomial_coeffitients(x, y)
+polynomial_a = polynomial_coefficients(x, y)
 
 polynomial_y = aproximation_function_polynomial(polynomial_a, x)
 

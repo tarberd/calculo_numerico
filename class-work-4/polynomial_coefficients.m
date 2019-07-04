@@ -1,4 +1,4 @@
-function a = polynomial_coeffitients(x, y)
+function a = polynomial_coefficients(x, y)
   n = length(x) - 1;
 
   for i = 1 : n + 1

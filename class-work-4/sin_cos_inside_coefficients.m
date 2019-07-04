@@ -1,4 +1,4 @@
-function a = sin_cos_inside_coeffitients(x, y)
+function a = sin_cos_inside_coefficients(x, y)
     % solve coefitient derivate system
 
     ai = [
